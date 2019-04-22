@@ -1,7 +1,9 @@
 package com.jxau.springbootweb.Controller;
 
+import com.jxau.springbootweb.exception.UserNotExitException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.Arrays;
@@ -16,7 +18,11 @@ public class HelloController {
 ////    }
     @ResponseBody
     @RequestMapping("/hello")
-    public String hello(){
+    public String hello(@RequestParam("user") String user){
+        if(user.equals("aaa")){
+            throw new UserNotExitException();
+
+        }
         return "hello world";
     }
 
